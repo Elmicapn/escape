@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Escape Code</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+margin-top:100px;
+}
+input{
+padding:10px;
+font-size:20px;
+}
+button{
+padding:10px 20px;
+font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔐 Entrez le code</h1>
+
+<input id="code" placeholder="Code">
+<button onclick="checkCode()">Valider</button>
+
+<p id="message"></p>
+
+<script>
+
+function checkCode(){
+
+let code = document.getElementById("code").value;
+
+if(code === "4262"){
+document.getElementById("message").innerHTML =
+"🎉 Bravo ! Vous avez résolu l'énigme.";
+}
+else{
+document.getElementById("message").innerHTML =
+"❌ Mauvais code, réessayez.";
+}
+
+}
+
+</script>
+
+</body>
+</html>
