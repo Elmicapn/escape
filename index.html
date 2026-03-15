@@ -2,21 +2,25 @@
 <html>
 <head>
 <title>Escape Code</title>
+
 <style>
 body{
 font-family: Arial;
 text-align:center;
 margin-top:100px;
 }
+
 input{
 padding:10px;
 font-size:20px;
 }
+
 button{
 padding:10px 20px;
 font-size:20px;
 }
 </style>
+
 </head>
 
 <body>
@@ -30,15 +34,25 @@ font-size:20px;
 
 <script>
 
-function checkCode(){
+async function sha256(message) {
+const msgBuffer = new TextEncoder().encode(message);
+const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+const hashArray = Array.from(new Uint8Array(hashBuffer));
+return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function checkCode(){
 
 let code = document.getElementById("code").value;
 
-if(code === "4262"){
+let hash = await sha256(code);
+
+let correctHash = "4e7b3a6f6f66d4a79e927651c01fb9b31c7648206dfa81857232ece2b2043614";
+
+if(hash === correctHash){
 document.getElementById("message").innerHTML =
 "🎉 Bravo ! Vous avez résolu l'énigme.";
-}
-else{
+} else{
 document.getElementById("message").innerHTML =
 "❌ Mauvais code, réessayez.";
 }
