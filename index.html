@@ -9,12 +9,10 @@ font-family: Arial;
 text-align:center;
 margin-top:100px;
 }
-
 input{
 padding:10px;
 font-size:20px;
 }
-
 button{
 padding:10px 20px;
 font-size:20px;
@@ -34,22 +32,11 @@ font-size:20px;
 
 <script>
 
-async function sha256(message) {
-const msgBuffer = new TextEncoder().encode(message);
-const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-const hashArray = Array.from(new Uint8Array(hashBuffer));
-return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-async function checkCode(){
+function checkCode(){
 
 let code = document.getElementById("code").value;
 
-let hash = await sha256(code);
-
-let correctHash = "6f8a8a9d2a6b3f7c6a4d91f2f6b0d7e6c5f1b3e0c7c9a2c2e6f3c8d4a9b1e2f7";
-
-if(hash === correctHash){
+if(code === "6812"){
 document.getElementById("message").innerHTML =
 "🎉 Bravo ! Vous avez résolu l'énigme.";
 } else{
